@@ -43,15 +43,22 @@ Si dans *Deux* je fais `git init` puis `git clone ..\PetitProjet`, ca copie et j
             PetitProjet // avec tout le contenu...
    
 Bon par contre si on met des trucs dans PEtitProjet, je suis pas au courant
-Entrons dans Deux\PetitProjet et faisons
-git remote -v
-git remote add upstream ..\..\PetitProjet // attention, deux .. à présent (ou chemin complet)
+1. Entrons dans Deux\PetitProjet et faisons
+    git remote -v
+    git remote add upstream ..\..\PetitProjet // attention, deux .. à présent (ou chemin complet)
+    git remote -v			// on s'est rajouté une reference
+A présent, j'écoute
 
+2. Modifions des trucs dans PetitProjet, addons, committons (pas de push puisque ce serait pour le serveur)
 
+3. 
+    git fetch upstream 		// les modifs sont recupérées, mais mises de cote (pour pas ecraser nos propres modifs...)
+    git checkout master  	// apparemment inutile / je pense que c'est pour les branches
+    git merge upstream/master
 
-
-
-
+Soit on n'avais pas fait de modifs et on met a jour, soit on avait fait des modifs, 
+et on va tenter un merge. Attention, quand je parle de modifs *commitées*. Si on committe pas,
+tout est perdu je pense
 
 
 
