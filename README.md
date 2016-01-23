@@ -11,14 +11,12 @@ Ajouter des trucs sans faire de branche
 =======================================
 
 On fait des modifs ds un fichier
-    \>git status _pour voir où on en est : les fichiers en rouge n'ont pas été ajoutés_
-
-    \>add monfichier (ou add * pour tous, paf)
-    	>git status _les fichiers en vert ont ete ajoutés, faut les commiter_
-    \>add commit -m "jai fait des modifs" _c'est toujours pas la-bas_
-    \>git push origin master
-
-Ayé c'est ajouté la-bas !
+		>git status 						// pour voir où on en est : les fichiers en rouge n'ont pas été ajoutés
+    >add monfichier (ou add * pour tous, paf)
+    	>git status 						// les fichiers en vert ont ete ajoutés, il faut les commiter
+    >add commit -m "jai fait des modifs" 	// c'est toujours pas la-bas
+    >git push origin master					// Ayé c'est ajouté la-bas !
+	
 Remarque : quand je dis "ajouter", c'est les modifs. Ce peut être la suppression d'un fichier...
 
 Si on refait des modifs apres un commit on peut recommiter avant de pusher ? 
