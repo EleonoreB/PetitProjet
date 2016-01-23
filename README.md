@@ -21,6 +21,11 @@ On fait des modifs ds un fichier
 Ayé c'est ajouté la-bas !
 Remarque : quand je dis "ajouter", c'est les modifs. Ce peut être la suppression d'un fichier...
 
+Si on refait des modifs apres un commit on peut recommiter avant de pusher ? 
+Oui mais il faut d'abord RE-ajouter les modifs
+
+NE JAMAIS FAIRE `git commit -a`  !!! Ca ouvre un editeur à la con dont je ne sais pas sortir !!
+
 
 Ajouter des trucs en faisant une branche
 ========================================
