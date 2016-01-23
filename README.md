@@ -42,7 +42,7 @@ Si dans *Deux* je fais `git init` puis `git clone ..\PetitProjet`, ca copie et j
         Deux
             PetitProjet // avec tout le contenu...
    
-Bon par contre si on met des trucs dans PEtitProjet, je suis pas au courant
+Bon par contre si on met des trucs dans PetitProjet, je suis pas au courant
 1. Entrons dans Deux\PetitProjet et faisons
     git remote -v
     git remote add upstream ..\..\PetitProjet // attention, deux .. à présent (ou chemin complet)
@@ -58,7 +58,23 @@ A présent, j'écoute
 
 Soit on n'avais pas fait de modifs et on met a jour, soit on avait fait des modifs, 
 et on va tenter un merge. Attention, quand je parle de modifs *commitées*. Si on committe pas,
-tout est perdu je pense
+tout est perdu je pense.
+
+En cas de doute sur le merge (merge automatique pas possible), les deux versions 
+sont mises l'une au-dessus de l'autre comme ca 
+
+    ======> HEAD
+    blabla
+    =======
+    blibli
+    =======> upstream
+
+Et on est prié de faire le tri à la mano, puis de commiter (côté Deux, donc). 
+Puis on peut retenter
+    git fetch upstream 		
+    git merge upstream/master
+Pour vérifier que tout va bien (up to date)
+Bon, par contre, il faut repusher nos modifs sur le PetitProjet original, et là ca veut pas.
 
 
 
