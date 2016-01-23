@@ -12,9 +12,9 @@ Ajouter des trucs sans faire de branche
 
 On fait des modifs ds un fichier
 		>git status 						// pour voir où on en est : les fichiers en rouge n'ont pas été ajoutés
-    >add monfichier (ou add * pour tous, paf)
+    >git add monfichier (ou add * pour tous, paf)
     	>git status 						// les fichiers en vert ont ete ajoutés, il faut les commiter
-    >add commit -m "jai fait des modifs" 	// c'est toujours pas la-bas
+    >git commit -m "jai fait des modifs" 	// c'est toujours pas la-bas
     >git push origin master					// Ayé c'est ajouté la-bas !
 	
 Remarque : quand je dis "ajouter", c'est les modifs. Ce peut être la suppression d'un fichier...
@@ -25,15 +25,40 @@ Oui mais il faut d'abord RE-ajouter les modifs
 NE JAMAIS FAIRE `git commit -a`  !!! Ca ouvre un editeur à la con dont je ne sais pas sortir !!
 
 
-Ajouter des trucs en faisant une branche
-========================================
-
-
 Récupérer un projet existant
 ============================
-    git fork http://urlDuprojet     _indique qu'on va faire une copie_
     git clone http//urlDuprojet la-bas _ca fait la copie effectivement_
+
+Un truc rigolo, c'est qu'on peut cloner un projet pas distant. Par exemple avec cette arbo
+
+    MesProjets
+		PetitProjet
+		Deux
+
+Si dans *Deux* je fais `git init` puis `git clone ..\PetitProjet`, ca copie et j'obtiens
+
+    MesProjets
+        PetitProjet
+        Deux
+            PetitProjet // avec tout le contenu...
+   
+Bon par contre si on met des trucs dans PEtitProjet, je suis pas au courant
+Entrons dans Deux\PetitProjet et faisons
+git remote -v
+git remote add upstream ..\..\PetitProjet // attention, deux .. à présent (ou chemin complet)
+
+
+
+
+
+
+
+
+
+
+
 	
+    git fork http://urlDuprojet     _indique qu'on va faire une copie_
 A priori, fork et pull request sont liés : c'est pour pouvoir envoyer les modifs la-bas apres.
 https://help.github.com/articles/fork-a-repo/
 
