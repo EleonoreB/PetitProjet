@@ -58,7 +58,8 @@ A présent, j'écoute
 
 Soit on n'avais pas fait de modifs et on met a jour, soit on avait fait des modifs, 
 et on va tenter un merge. Attention, quand je parle de modifs *commitées*. Si on committe pas,
-tout est perdu je pense.
+tout est perdu je pense. Non c'est pas perdu, mais il rale : il faut soit commiter, soit annuler (`checkout fichier`), soit mettre de côté
+(stash) : https://git-scm.com/book/fr/v1/Utilitaires-Git-Le-remisage
 
 En cas de doute sur le merge (merge automatique pas possible), les deux versions 
 sont mises l'une au-dessus de l'autre comme ca 
