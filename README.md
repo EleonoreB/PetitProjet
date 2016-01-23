@@ -27,7 +27,7 @@ NE JAMAIS FAIRE `git commit -a`  !!! Ca ouvre un editeur à la con dont je ne sai
 
 Récupérer un projet existant
 ============================
-    git clone http//urlDuprojet la-bas _ca fait la copie effectivement_
+    git clone http//urlDuprojet la-bas  // ca fait la copie effectivement
 
 Un truc rigolo, c'est qu'on peut cloner un projet pas distant. Par exemple avec cette arbo
 
@@ -64,11 +64,11 @@ tout est perdu je pense. Non c'est pas perdu, mais il rale : il faut soit commit
 En cas de doute sur le merge (merge automatique pas possible), les deux versions 
 sont mises l'une au-dessus de l'autre comme ca 
 
-    ======> HEAD
+    <<<<<<< HEAD
     blabla
     =======
     blibli
-    =======> upstream
+    >>>>>>> upstream
 
 Et on est prié de faire le tri à la mano, puis de commiter (côté Deux, donc). 
 Puis on peut retenter
@@ -76,7 +76,6 @@ Puis on peut retenter
     git merge upstream/master
 Pour vérifier que tout va bien (up to date)
 Bon, par contre, il faut repusher nos modifs sur le PetitProjet original, et là ca veut pas.
-
 
 
 
