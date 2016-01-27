@@ -55,7 +55,7 @@ Pas trop pour ne pas avoir à scroller. La liste est scrollable neanmoins si né
 >Je ne suis pas certaine que le positionnement de la pagination soit optimal pour faire le lien avec la liste des correspondants : plutot en bas de la liste ?
 
 ###3.1. Cas Subscribers
-Avant le premier : champ de recherche de personne avec autocompletion *(cf header site+filtre "artists only")*
+Avant le premier : champ de recherche d'interlocuteur avec autocompletion *(cf header site+filtre __"only correspondants de cet utilisateur"__)*
 
 Description de chaque dialogue, de gauche à droite :
 * Photo (indicateur *online* si utilisateur connecté) 
@@ -96,8 +96,8 @@ Problématiques :
 * Voir également 5.1
 
 ##5. Nouveau message
-Si accès par `@` de la part d'un visiteur, ou si clic sur *New Message*, affichage de:
-* champ de recherche de personne (cf en haut des dialogues)
+Si accès par `@` de la part d'un visiteur, ou si clic sur **New Message**, affichage de:
+* champ de recherche de personne (tous les artistes)
 * texte
 * send
 
@@ -117,5 +117,5 @@ de l'utilisateur concerné : automatique si la requete prend le nombre de propos
 marqués comme *non lus* ayant cet utilisateur pour destinataire.
 
 ##6. Remarque générale
-Pour toutes les actions de **suppression* citées, pas de réelle suppression mais un tag booléen à mettre à `false`.
+Pour toutes les actions de **suppression** citées, pas de réelle suppression mais un tag booléen à mettre à `false`.
 
