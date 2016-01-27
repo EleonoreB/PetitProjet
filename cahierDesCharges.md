@@ -28,7 +28,7 @@ L'Entité `Message` ayant deja été créée pour faire une copie des mails envo
 
 ## 2. Ecran d'affichage
 
-1. Ligne 1 : menu du Dashboard, Messagerie en premier (autres : Liste d'artistes | Buddies | Forum...). 
+1. Ligne 1 : menu de navigation du Dashboard, Messagerie en premier (autres : Liste d'artistes | Buddies | Forum...). 
 Reprendre le look de l'admin
 
 2. Ligne 2 :
@@ -50,7 +50,7 @@ Trois couleurs de fond :
 
 ####Remarque
 **Nombre de correspondants par page** : à mettre en parametre extérieur (`parameters.yml`). 
-Pas trop pour ne pas avoir à scroller
+Pas trop pour ne pas avoir à scroller. La liste est scrollable neanmoins si nécessaire.
 
 >Je ne suis pas certaine que le positionnement de la pagination soit optimal pour faire le lien avec la liste des correspondants : plutot en bas de la liste ?
 
@@ -58,7 +58,7 @@ Pas trop pour ne pas avoir à scroller
 Avant le premier : champ de recherche de personne avec autocompletion *(cf header site+filtre "artists only")*
 
 Description de chaque dialogue, de gauche à droite :
-* Photo (indicateur *connected* si approprié) 
+* Photo (indicateur *online* si utilisateur connecté) 
 * Prénom+Nom + instrument 
 * Date (et heure si < 1 mois) du dernier message (1 mois = paramètre)
 * puce rouge "nombre de messages non lus" si approprié
@@ -69,13 +69,13 @@ Sous la date/heure, une croix permet de supprimer tout le dialogue
 ####Remarque
 Le nb de messages non lus est mis a zero dès l'affichage du dialogue en question
 
-###3.2 Cas Visitors
+###3.2. Cas Visitors
 Pas de champ de recherche en haut je suppose ?
 
 
 ##4. Affichage du dialogue courant
 ### Cas Subscribers
-* Afficher les X derniers messages (X =paramètre), permettre le chargement *lazy* des plus anciens avec flèche (cf Events)
+* Afficher les X derniers messages (X =paramètre), permettre le chargement *lazy* des plus anciens avec flèche (cf Events/Operas dans l'agenda)
 * Scrollbar pour ne pas dépasser la taille de l'ecran (scroller vers le propos le plus récent)
 
 1. Pour chaque propos: 
@@ -112,6 +112,8 @@ Action :
 bulle d'info expliquant le fonctionnement AVANT envoi
 * si registered to registered : enregistrement du Propos et des dialogues afférents.
 
++ Mise à jour des indicateurs de profil (messages non lus, total notification+messages) 
+de l'utilisateur concerné : automatique si la requete prendre le nombre de propos indiqués non lus.
 
 ##6. Remarque générale
 Pour toutes les actions de **suppression* citées, pas de réelle suppression mais un tag booléen à mettre à `false`.
