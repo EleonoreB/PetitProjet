@@ -104,7 +104,7 @@ Si accès par `@` de la part d'un visiteur, ou si clic sur *New Message*, affich
 Action : 
 * Si visiteur écrit à un artiste :
 	* fonctionnement actuel : copie dans un `Message` puis envoi de mail
-	* nouveau fonctionnement : **se brancher avant** ou 
+	* nouveau fonctionnement : **se brancher avant** ou :
 	* **modifier** ce fonctionnement pour l'intégrer dans le nouvel outil. Dans ce cas : prévoir la gestion
 	des anciens `Messages`, attention à la migration éventuelle de l'entité
 * si réponse au message d'un visiteur : envoi de mail (et enregistrement du truc) - prévoir 
