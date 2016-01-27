@@ -112,8 +112,9 @@ Action :
 bulle d'info expliquant le fonctionnement AVANT envoi
 * si registered to registered : enregistrement du Propos et des dialogues afférents.
 
-+ Mise à jour des indicateurs de profil (messages non lus, total notification+messages) 
-de l'utilisateur concerné : automatique si la requete prendre le nombre de propos indiqués non lus.
+Mise à jour des indicateurs de profil (messages non lus, total notification+messages) 
+de l'utilisateur concerné : automatique si la requete prend le nombre de propos 
+marqués comme *non lus* ayant cet utilisateur pour destinataire.
 
 ##6. Remarque générale
 Pour toutes les actions de **suppression* citées, pas de réelle suppression mais un tag booléen à mettre à `false`.
