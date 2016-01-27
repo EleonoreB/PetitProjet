@@ -1,52 +1,100 @@
-Cahier des charges messagerie
+#Cahier des charges Messagerie
 
-La messagerie est le premier outil du Dashboard d'un utilisateur enregistré (V1 : artists seulement)
-=>prevoir DashboardBundle
-MessengerControler
-rappel : bundler et Entities sont generes a la demande (avec tous les repertoires kil faut) par symfony...
+## Description générale
 
-Page de messagerie accessible soit
-- via le lien @ d'un profil (personne destinataire du message)
+La messagerie est le premier outil du Dashboard d'un utilisateur enregistré (V1 : seuls les artists peuvent l'utiliser)
+> =>prevoir Messengerbundle ET DashboardBundle
+
+La page de messagerie accessible soit
+- via le lien `@` d'un profil (personne destinataire du message)
 - via le menu de mon profil, en mode connecté (sous Notifications)
 
-Messages ranges en conversations par utilisateur. 
-=>Conversations ou Dialogues ou echanges, discussion, causerie, entretien
-Remarque : l'Entité Message ayant deja été créée pour faire une copie des mails envoyés par les visiteurs, il faudrait pour 
-éviter toute confusion utiliser un autre nom d'entité : Avis, Pensée, Depeche, Parole, propos, flash (plutot pour le chat) ?
-=> Parole rangé en Dialogue
+Les messages sont rangés en conversations par utilisateur (1 utilisateur = 1 conversation, comprenant tous les messages).
 
-Future feature : conversations à plusieurs (ex membres d'un ensemble etc) ?
+### Remarque technique
+ 
+L'Entité `Message` ayant deja été créée pour faire une copie des mails envoyés par les visiteurs, il faudrait pour 
+éviter toute confusion utiliser un autre nom d'entité : Avis, Pensée, Depeche, Parole, Propos, Flash (plutot pour le chat) ?
+=> Conversations ou Dialogues ou echanges, discussion, causerie, entretien
+=> ou alors il faut changer l'entité Message en MailMessage. voir avec Julien si compliqué
 
-Ligne 1 : menu du Dashboard
+>*Future feature* : conversations à plusieurs (ex membres d'un ensemble etc) ?
 
-Ligne 2 :
-Distinction utilisateur enregistré (subscribers : artist only en V1) et non enregistré (visitor), avec indicateur du
-nombre de messages non lus (pour les visiteurs, on utilise la copie des mails envoyés (entité Message)
+>Je propose : **Propos** rangées en **Dialogues**, on garde les mots *Conversation/Discussion* pour un possible usage en conversation à plusieurs, ou pour un forum.
+
+## Ecran d'affichage
+
+1. Ligne 1 : menu du Dashboard
+
+2. Ligne 2 :
+Distinction utilisateur enregistré (*subscribers* : artist only en V1) et non enregistré (*visitor*), avec indicateur du
+nombre de messages non lus (pour les visiteurs, on utilise la copie des mails envoyés (entité Message))
+
+3. Ligne 3 : pagination des conversations  (syntaxe pagination : page=5) et bouton **New message** (pour envoyer un message 
+à un nouveau correspondant -ou un ancien-). 
+
+4. Le reste de l'écran : 1/3 liste des conversations 2/3 conversation courante
+
+>Remarque : revoir la syntaxe de pagination : `/page/5` ou simplement `/5` serait plus approprié IMHO
+
+##Liste des dialogues
+Trois couleurs de fond : 
+* selected (premier de la liste par défaut) = gris foncé, 
+* listed = gris
+* hover = gris pâle
+
+####Remarque
+**Nombre de correspondants par page** : à mettre en parametre extérieur (`parameters.yml`). 
+Pas trop pour ne pas avoir à scroller
+
+### Cas Subscribers
+Avant le premier : champ de recherche de personne avec autocompletion *(cf header site+filtre "artists only")*
+
+Description de chaque dialogue, de gauche à droite :
+* Photo (indicateur *connected* si approprié) 
+* Prénom+Nom + instrument 
+* Date (et heure si < 1 mois) du dernier message (1 mois = paramètre)
+* puce "nombre de messages non lus" si approprié
+
+Sous la date/heure, une croix permet de supprimer tout le dialogue 
+>(à mon avis c'est pas clair, il faudrait plutôt une grosse poubelle, et une explication  en tooltip)
+
+####Remarque
+Le nb de messages non lus est mis a zero dès l'affichage du dialogue en question
+
+### Cas Visitors
+Pas de champ de recherche en haut
 
 
-Ligne 3 : pagination des conversations et bouton new message (pour envoyer un message à un nouveau correspondant -ou un ancien)
+##Affichage du dialogue courant
+### Cas Subscribers
+* Afficher les X derniers messages (X =paramètre), permettre le chargement *lazy* des plus anciens avec flèche (cf Events)
+* Scrollbar pour ne pas dépasser la taille de l'ecran (scroller vers le message le plus récent)
 
-Le reste de l'écran : 1/3 liste des conversations 2/3 conversation courante
+1. Pour chaque propos: 
+  * Ligne 1 :Sender (Prénom+Nom) - Date et heure
+  * Ligne, à droite : *poubelle* permet de supprimer le propos 
+    * (précisement : l'occurence dans CE dialogue. Elle existe toujours chez mon correspondant. Idem en ce qui concerne la suppression d'un dialogue -cad de tous les messages d'un dialogue-)
+    * en cas de Message provenant d'un mail, la suppression n'est pas possible car on n'a pas de dialogue enregistré
+  * Ligne 2 : contenu du propos
+2. En bas : champ de texte pour la rédaction d'un nouveau propos, bouton send. En V2 possibilité d'ajouter une piece jointe.
 
-Liste des conversations
-Avant le premier : champ de recherche de personne avec autocompletion cf header site+filtre "artists only")
-Photo (indicateur connected if relevant) / name+instrument / Date+hour(si >1month) / puce unread messages if relevant
-trois couleurs de fond : selected (first by default), listed, hover
-Sous la date/heure, une croix permet de supprimer toute la conversation (à mon avis c'est pas clair, 
-il faudrait une grosse poubelle, et une explication  en tooltop)
-Nombre de correspondants par page : à mettre en parametre. Pas trop pour ne pas avoir à scroller (pagination : page=5)
-Le nb de messages non lus est mis a zero des l'affichage de la conversation en question
+### Envoi de reponse
+Action : 
+* si réponse à un visiteur : envoi de mail (et enregistrement du Message) - prévoir message informatif expliquant le fonctionnement 
+* si register : enregistrement du Propos
 
-Conversations courante : afficher les X derniers messages, permettre le chargement des plus anciens avec fleche
-Scrollbar pour ne page depasser la taille de l'ecran (scroller vers le message le plus récent)
-Pour chaque message: 
-Sender - Date 
-a droite : poubelle permet de supprimer le message (précisement : l'occurence dans CETTE conversation. 
-Elle existe toujours chez mon correspondant. Idem en ce qui concerne la suppression d'une conversation (cad de tous les messages d'une conversation)
-contenu du message
-En bas : nouveau message, bouton send. En V2 possibilité d'ajouter une piece jointe
-action : si visiteur : envoi de mail (et enregistrement du Message)
-	si register : enregistrement du xxx
-	
-Remarque : pour toutes les actions de suppression, pas de reelle suppression mais un tag boolean
+### Cas Visitors
+Récupération des copies de mails enregistrées en Message
+
+Problématiques :
+* Les items sont à récupérer dans l'entité Message, ils ne sont pas rangés par Propos/Dialogue à la création. Requete totalement différente.
+* Donc a priori, pas de possiblité de suppression...
+* En cas de réponse, l'entité n'est ni un message (le visiteur n'est pas l'expéditeur mais le destinataire) ni un Propos 
+(on n'a pas deux utilisateurs enregistrés, sauf à créer un utilisateur provisoire). Même dans ce cas, on a une requete batarde Message/Propos. 
+* Voir comment fonctionne Message : création d'un utilisateur provisoire ?
+
+
+## Remarque générale
+Pour toutes les actions de **suppression* citées, pas de réelle suppression mais un tag booléen à mettre à `false`.
 
