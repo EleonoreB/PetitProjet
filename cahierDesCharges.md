@@ -1,6 +1,6 @@
 #Cahier des charges Messagerie
 
-## Description générale
+## 1. Description générale
 
 La messagerie est le premier outil du Dashboard d'un utilisateur enregistré 
 (V1 : seuls les **artists** peuvent utiliser la messagerie)
@@ -26,7 +26,7 @@ L'Entité `Message` ayant deja été créée pour faire une copie des mails envo
 ####Je propose : 
 **Propos** rangées en **Dialogues**, on garde les mots *Conversation/Discussion* pour un possible usage en conversation à plusieurs, ou pour un forum.
 
-## Ecran d'affichage
+## 2. Ecran d'affichage
 
 1. Ligne 1 : menu du Dashboard, Messagerie en premier (autres : Liste d'artistes | Buddies | Forum...). 
 Reprendre le look de l'admin
@@ -42,7 +42,7 @@ nombre de messages non lus (pour les visiteurs, on utilise la copie des mails en
 
 >Remarque : revoir la syntaxe de pagination : `/page/5` ou simplement `/5` serait plus approprié IMHO
 
-##Liste des dialogues
+##3. Liste des dialogues
 Trois couleurs de fond : 
 * selected (premier de la liste par défaut) = gris foncé, 
 * listed = gris
@@ -54,7 +54,7 @@ Pas trop pour ne pas avoir à scroller
 
 >Je ne suis pas certaine que le positionnement de la pagination soit optimal pour faire le lien avec la liste des correspondants : plutot en bas de la liste ?
 
-### Cas Subscribers
+###3.1. Cas Subscribers
 Avant le premier : champ de recherche de personne avec autocompletion *(cf header site+filtre "artists only")*
 
 Description de chaque dialogue, de gauche à droite :
@@ -69,11 +69,11 @@ Sous la date/heure, une croix permet de supprimer tout le dialogue
 ####Remarque
 Le nb de messages non lus est mis a zero dès l'affichage du dialogue en question
 
-### Cas Visitors
+###3.2 Cas Visitors
 Pas de champ de recherche en haut je suppose ?
 
 
-##Affichage du dialogue courant
+##4. Affichage du dialogue courant
 ### Cas Subscribers
 * Afficher les X derniers messages (X =paramètre), permettre le chargement *lazy* des plus anciens avec flèche (cf Events)
 * Scrollbar pour ne pas dépasser la taille de l'ecran (scroller vers le propos le plus récent)
@@ -93,14 +93,15 @@ Problématiques :
 * En cas de réponse, l'entité n'est ni un message (le visiteur n'est pas l'expéditeur mais le destinataire) ni un Propos 
 (on n'a pas deux utilisateurs enregistrés, sauf à créer un utilisateur provisoire). Même dans ce cas, on a une requete batarde Message/Propos. 
 * Voir comment fonctionne Message : création d'un utilisateur provisoire ?
+* Voir également 5.1
 
-## Nouveau message
+##5. Nouveau message
 Si accès par `@` de la part d'un visiteur, ou si clic sur *New Message*, affichage de:
 * champ de recherche de personne (cf en haut des dialogues)
 * texte
 * send
 
-### Envoi de reponse, envoi d'un message 
+###5.1 Envoi de reponse, envoi d'un message 
 Action : 
 * Si visiteur écrit à un artiste :
 	* fonctionnement actuel : copie dans un `Message` puis envoi de mail
@@ -112,6 +113,6 @@ bulle d'info expliquant le fonctionnement AVANT envoi
 * si registered to registered : enregistrement du Propos et des dialogues afférents.
 
 
-## Remarque générale
+##6. Remarque générale
 Pour toutes les actions de **suppression* citées, pas de réelle suppression mais un tag booléen à mettre à `false`.
 
